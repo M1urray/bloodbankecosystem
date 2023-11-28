@@ -50,6 +50,7 @@ public class Donation {
         this.donor = donor;
     }
 
+
     public int getQty() {
         return qty;
     }

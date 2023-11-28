@@ -1,5 +1,6 @@
 package com.example.bloodbank.controller;
 
+import com.example.bloodbank.dtos.DonationDto;
 import com.example.bloodbank.service.DonationService;
 import com.example.bloodbank.service.DonorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,14 @@ public class DonationController {
         this.donorService=donorService;
     }
 
-    //endpoint 4
+
     @PostMapping("/add")
-    public ResponseEntity<Object> addDonation() {
-        Map<String,Object> response=new LinkedHashMap<>();
-        response.put("success", true);
-        response.put("message", "placeholder for logic of adding blood donation for  donor ");
-        return ResponseEntity.ok(response);
+    public ResponseEntity<?> addDonation(@RequestBody DonationDto donationDto) {
+        try {
+            return ResponseEntity.ok(donationService.addDonation(donationDto));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     //endpoint 5

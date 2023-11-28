@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 @Getter
 @Setter
@@ -42,6 +43,13 @@ public class Donor {
 
     public Donor() {
 
+    }
+    public int getAge() {
+        if (dateOfBirth == null) {
+            return 0; // Return 0 or handle accordingly if dateOfBirth is null
+        }
+        LocalDate currentDate = LocalDate.now();
+        return Period.between(dateOfBirth, currentDate).getYears();
     }
 
 }
